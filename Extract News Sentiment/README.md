@@ -18,6 +18,6 @@ Usage"
 
 2. Run the script: Execute the script to process the CSV files and generate sentiment scores:
 
-   python sentiment_analysis.py
+        python ens.py
 
 3. Output: The processed CSV files with sentiment scores will be saved in the Extract News Sentiment folder. Each output file will be named as topic-sentiment.csv, where topic is derived from the input filename.
