@@ -25,19 +25,19 @@ def adjust_datetime(file_name):
     # Load the CSV file into a DataFrame
     data = pd.read_csv(file_name)
     
-    # Ensure the 'Datetime' column is treated as a datetime object
-    data['Datetime'] = pd.to_datetime(data['Datetime'])
+    # Ensure the 'Datetime' column (first column) is treated as a datetime object
+    data.iloc[:, 0] = pd.to_datetime(data.iloc[:, 0])
     
     # Iterate over the rows and adjust datetime
     for index, row in data.iterrows():
-        if row['Datetime'].strftime('%z') == '+0100':  # Check for +01:00 timezone
+        if row[0].strftime('%z') == '+0100':  # Check for +01:00 timezone
             # Subtract 1 hour
-            adjusted_time = row['Datetime'] - datetime.timedelta(hours=1)
+            adjusted_time = row[0] - datetime.timedelta(hours=1)
             
             # Update the row's Datetime value
-            data.at[index, 'Datetime'] = adjusted_time
+            data.at[index, data.columns[0]] = adjusted_time
     
-    # Save the adjusted DataFrame back to a new CSV
+    # Save the adjusted DataFrame back to the CSV
     adjusted_file_name = file_name
     data = data.iloc[:, :-1]
     data.to_csv(adjusted_file_name, index=False)
@@ -54,8 +54,8 @@ def main(symbol, period, interval):
     adjust_datetime(file_name)
 
 # Example usage
-symbol = 'EURUSD=X'  # Replace with your desired symbol
+symbol = 'BTC-USD'  # Replace with your desired symbol
 period = '2y'        # Replace with your desired period
-interval = '1h'      # Use '1d' for daily or '1h' for hourly
+interval = '1d'      # Use '1d' for daily or '1h' for hourly
 
 main(symbol, period, interval)
