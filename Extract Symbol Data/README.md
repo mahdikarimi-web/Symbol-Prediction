@@ -2,11 +2,11 @@ This notebook provides a simple way to extract Open, High, Low, and Close (OHLC)
 
 Prerequisites:
 
-    You need to have the following libraries available in your Google Colab environment:
+You need to have the following libraries available in your Google Colab environment:
 
-    yfinance
-    pandas
-    google.colab
+yfinance
+pandas
+google.colab
 
 These libraries are usually pre-installed in Google Colab, but you can install any missing packages using the following commands:
 
@@ -26,5 +26,5 @@ Usage:
 
 Output:
 
-    The script will generate a CSV file named esd-[symbol]-[period]-[interval].csv containing the extracted and adjusted OHLC data.
-    The file will be automatically downloaded to your local machine after execution.
+The script will generate a CSV file named esd-[symbol]-[period]-[interval].csv containing the extracted and adjusted OHLC data.
+The file will be automatically downloaded to your local machine after execution.
