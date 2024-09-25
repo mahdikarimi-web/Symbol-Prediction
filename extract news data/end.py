@@ -39,7 +39,7 @@ if __name__ == "__main__":
     
     today = datetime.now().strftime('%Y-%m-%d')
     topic = topic.replace('/', '-')
-    filename = f"{topic}-{today}.csv"
+    filename = f"{topic}_{today}.csv"
     
     save_to_csv(news_data, filename, sort_ascending=False) 
     print(f"Data saved to {filename}.")
