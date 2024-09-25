@@ -26,5 +26,5 @@ Usage:
 
 Output:
 
-    The script will generate a CSV file named esd-[symbol]-[period]-[interval].csv containing the extracted and adjusted OHLC data.
-    The file will be automatically downloaded to your local machine after execution.
+The script will generate a CSV file named esd-[symbol]-[period]-[interval].csv containing the extracted and adjusted OHLC data.
+The file will be automatically downloaded to your local machine after execution.
