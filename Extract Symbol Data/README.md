@@ -35,41 +35,62 @@ In yfinance, valid symbols represent different financial instruments like stocks
 
 1. Stocks
 For individual company stocks, symbols typically match their ticker on exchanges:
+
 Apple: AAPL
+
 Google (Alphabet): GOOG or GOOGL
+
 Tesla: TSLA
+
 Amazon: AMZN
+
 Microsoft: MSFT
 
 2. Currencies
 Currency pairs often have the format XXXYYY=X, where XXX is the base currency and YYY is the quote currency:
+
 EUR/USD (Euro to USD): EURUSD=X
+
 GBP/USD (British Pound to USD): GBPUSD=X
+
 USD/JPY (USD to Japanese Yen): JPY=X
+
 USD/CHF (USD to Swiss Franc): CHF=X
 
 3. Cryptocurrencies
 Cryptocurrencies are also supported, using similar symbol formatting:
+
 Bitcoin to USD: BTC-USD
+
 Ethereum to USD: ETH-USD
+
 Dogecoin to USD: DOGE-USD
 
 4. Indices
 Major stock indices use their specific codes:
+
 S&P 500: ^GSPC
+
 Dow Jones Industrial Average: ^DJI
+
 Nasdaq Composite: ^IXIC
+
 FTSE 100: ^FTSE
 
 5. Commodities
 Commodities such as gold or oil:
+
 Gold: GC=F
+
 Crude Oil: CL=F
+
 Silver: SI=F
 
 6. ETFs (Exchange-Traded Funds)
 ETFs follow their own tickers:
+
 SPDR S&P 500 ETF Trust: SPY
+
 Invesco QQQ Trust: QQQ
 
 7. Bonds
