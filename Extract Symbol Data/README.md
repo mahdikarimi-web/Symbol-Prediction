@@ -1,4 +1,5 @@
 This notebook provides a simple way to extract Open, High, Low, and Close (OHLC) data for a specified financial symbol using the yfinance library in Google Colab. The script also adjusts datetime values based on the +01:00 timezone and allows for easy downloading of the adjusted data as a CSV file.
+
 Prerequisites:
 
     You need to have the following libraries available in your Google Colab environment:
@@ -6,11 +7,12 @@ Prerequisites:
     yfinance
     pandas
     google.colab
+
 These libraries are usually pre-installed in Google Colab, but you can install any missing packages using the following commands:
 
     !pip install yfinance pandas
 
-How to Use:
+Usage:
 
     1.Open the Notebook: Create a new notebook in Google Colab.
     2.Copy and Paste the Code: Copy the provided script into a cell in the notebook.
