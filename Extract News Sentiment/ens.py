@@ -30,7 +30,7 @@ for filename in os.listdir(merge_data_folder):
         df['sentiment'] = df[title_column].apply(lambda title: analyzer.polarity_scores(title)['compound'])
         
         # Save the modified DataFrame to the "Extract News Sentiment" folder
-        output_file = f"{topic}-sentiment.csv"
+        output_file = f"{topic}_sentiment.csv"
         output_path = os.path.join(sentiment_data_folder, output_file)
         df.to_csv(output_path, index=False)
 
