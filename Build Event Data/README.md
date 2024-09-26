@@ -5,10 +5,17 @@ it will generate the desired dataframe in the current directory as "ecdf.csv"
 Output columns:
 
 • PubDate: The date of publishing event
+
 • PubTime: The time of publishing event
+
 • Currency: The currency/country of the event
+
 • Event: The published event
+
 • CurrEvent: The combined value of Currency and Event in the form Currency-Event
+
 • Actual: The actual value of the variable published in the event
+
 • Forecast: The forecasted value of the variable published in the event
+
 • Previous: The Previous value of the variable published in the event
