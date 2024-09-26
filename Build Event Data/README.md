@@ -1,6 +1,6 @@
 this program creates a dataset of events using the scraped data that is given to it.
 make sure to initialize your csv file address at the top of bed.py in "initial_file" variable.
-it will generate the desired dataframe in the current directory as "ecdf.csv"
+run the program and then, it will generate the desired dataframe in the current directory as "ecdf.csv"
 
 Output columns:
 
