@@ -26,7 +26,7 @@ Usage:
 
 Output:
 
-The script will generate a CSV file named esd-[symbol]-[period]-[interval].csv containing the extracted and adjusted OHLC data.
+The script will generate a CSV file named esd _ [symbol] _ [period] \_ [interval].csv containing the extracted and adjusted OHLC data.
 The file will be automatically downloaded to your local machine after execution.
 
 Tips:
@@ -34,7 +34,7 @@ Tips:
 In yfinance, valid symbols represent different financial instruments like stocks, currencies, cryptocurrencies, indices, and commodities. Here are examples of valid symbols across categories:
 
 1. Stocks
-For individual company stocks, symbols typically match their ticker on exchanges:
+   For individual company stocks, symbols typically match their ticker on exchanges:
 
 Apple: AAPL
 
@@ -47,7 +47,7 @@ Amazon: AMZN
 Microsoft: MSFT
 
 2. Currencies
-Currency pairs often have the format XXXYYY=X, where XXX is the base currency and YYY is the quote currency:
+   Currency pairs often have the format XXXYYY=X, where XXX is the base currency and YYY is the quote currency:
 
 EUR/USD (Euro to USD): EURUSD=X
 
@@ -58,7 +58,7 @@ USD/JPY (USD to Japanese Yen): JPY=X
 USD/CHF (USD to Swiss Franc): CHF=X
 
 3. Cryptocurrencies
-Cryptocurrencies are also supported, using similar symbol formatting:
+   Cryptocurrencies are also supported, using similar symbol formatting:
 
 Bitcoin to USD: BTC-USD
 
@@ -67,7 +67,7 @@ Ethereum to USD: ETH-USD
 Dogecoin to USD: DOGE-USD
 
 4. Indices
-Major stock indices use their specific codes:
+   Major stock indices use their specific codes:
 
 S&P 500: ^GSPC
 
@@ -78,7 +78,7 @@ Nasdaq Composite: ^IXIC
 FTSE 100: ^FTSE
 
 5. Commodities
-Commodities such as gold or oil:
+   Commodities such as gold or oil:
 
 Gold: GC=F
 
@@ -87,14 +87,14 @@ Crude Oil: CL=F
 Silver: SI=F
 
 6. ETFs (Exchange-Traded Funds)
-ETFs follow their own tickers:
+   ETFs follow their own tickers:
 
 SPDR S&P 500 ETF Trust: SPY
 
 Invesco QQQ Trust: QQQ
 
 7. Bonds
-Government bonds:
-US Treasury Bond 10-Year: ^TNX
+   Government bonds:
+   US Treasury Bond 10-Year: ^TNX
 
 You can explore more symbols directly on finance.yahoo.com, or through the yfinance search functionality.

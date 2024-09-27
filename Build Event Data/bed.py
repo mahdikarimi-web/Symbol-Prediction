@@ -1,6 +1,7 @@
 import csv
 import os
 import time
+import shutil
 initial_file = "ec.csv"
 
 
@@ -237,4 +238,15 @@ for file_name in os.listdir(folder_path):
         file_path = os.path.join(folder_path, file_name)
         # Remove the file
         os.remove(file_path)
-    
+
+        
+file_to_copy = 'ecdf.csv'
+destination_folder = 'C:\\Users\\mahdi\\Desktop\\works\\Merge Symbol and Event Data'
+
+# Check if the file to be copied exists
+if os.path.exists(file_to_copy):
+    # Copy the file to the destination folder
+    shutil.copy(file_to_copy, destination_folder)
+    print(f"File '{file_to_copy}' copied to '{destination_folder}' successfully.")
+else:
+    print(f"File '{file_to_copy}' does not exist.")

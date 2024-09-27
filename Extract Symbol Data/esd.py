@@ -13,7 +13,7 @@ def extract_symbol_data(symbol, period, interval):
     data = yf.download(tickers=symbol, period=period, interval=interval)
     
     # Prepare the file name
-    file_name = f'esd-{symbol.replace("/", "")}-{period}-{interval}.csv'
+    file_name = f'esd_{symbol.replace("/", "")}_{period}_{interval}.csv'
     
     # Save the data to a CSV file
     data.to_csv(file_name)
