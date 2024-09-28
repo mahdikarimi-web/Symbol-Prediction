@@ -171,7 +171,7 @@ print("New CSV file 'combined.csv' created successfully.")
 
 
 df_combined = pd.read_csv('combined.csv')
-df_esd = pd.read_csv('esd_BTC-USD_2y_1h.csv')
+df_esd = pd.read_csv(symbolDataFileHourly)
 
 # Ensure the DateTime format of the first column in esd_BTC-USD_2y_1h.csv is consistent with 'combined'
 df_esd['DateTime'] = df_esd.iloc[:, 0].str[:16]  # First 16 characters
@@ -207,3 +207,109 @@ df_final[f'PrevH[{symbol}][C]'] = df_combined_with_esd['Close']
 
 # Save the updated DataFrame to a new CSV file
 df_final.to_csv('final1_updated_with_PrevH.csv', index=False)
+#===================================================================
+
+df = pd.read_csv('final1_updated.csv')
+
+# Combine the 'PubDate' and 'NextH' columns into a new 'combined' column
+df['combined'] = df['PubDate'] + ' ' + df['NextH']
+
+# Create a new DataFrame with just the 'combined' column
+df_combined = df[['combined']]
+
+# Save the DataFrame to a new CSV file
+df_combined.to_csv('combined_nextH.csv', index=False)
+
+df_combined = pd.read_csv('combined_nextH.csv')
+df_esd = pd.read_csv(symbolDataFileHourly)
+
+# Ensure the DateTime format of the first column in esd_BTC-USD_2y_1h.csv is consistent with 'combined'
+df_esd['DateTime'] = df_esd.iloc[:, 0].str[:16]  # First 16 characters of the first column
+
+# Create new columns in df_combined for Open, High, Low, Close, and initialize them with NaN or None
+df_combined['Open'] = None
+df_combined['High'] = None
+df_combined['Low'] = None
+df_combined['Close'] = None
+
+# Loop through the combined DataFrame and check if the 'combined' value matches 'DateTime' in esd file
+for i, row in df_combined.iterrows():
+    # Find matching row in df_esd based on DateTime
+    match = df_esd[df_esd['DateTime'] == row['combined']]
+    
+    if not match.empty:
+        # If a match is found, extract Open, High, Low, and Close values
+        df_combined.at[i, 'Open'] = match['Open'].values[0]
+        df_combined.at[i, 'High'] = match['High'].values[0]
+        df_combined.at[i, 'Low'] = match['Low'].values[0]
+        df_combined.at[i, 'Close'] = match['Close'].values[0]
+
+# Save the updated DataFrame to a new CSV file
+df_combined.to_csv('combined_with_esd_data.csv', index=False)
+
+
+df_final = pd.read_csv('final1_updated_with_PrevH.csv')
+df_combined_with_esd = pd.read_csv('combined_with_esd_data.csv')
+
+# Add 'Open', 'High', 'Low', and 'Close' columns from 'combined_with_esd_data.csv' to 'final1_updated_with_PrevH.csv'
+df_final[f'NextH[{symbol}][O]'] = df_combined_with_esd['Open']
+df_final[f'NextH[{symbol}][H]'] = df_combined_with_esd['High']
+df_final[f'NextH[{symbol}][L]'] = df_combined_with_esd['Low']
+df_final[f'NextH[{symbol}][C]'] = df_combined_with_esd['Close']
+
+# Save the updated DataFrame to a new CSV file
+df_final.to_csv('final1_updated_with_NextH.csv', index=False)
+
+#============================================================
+
+df = pd.read_csv('final1_updated.csv')
+
+# Combine the 'PubDate' and 'PubTime' columns into a new 'combined' column
+df['combined'] = df['PubDate'] + ' ' + df['PubTime']
+
+# Create a new DataFrame with just the 'combined' column
+df_combined = df[['combined']]
+
+# Save the DataFrame to a new CSV file
+df_combined.to_csv('combined_pubdate_pubtime.csv', index=False)
+
+
+df_combined = pd.read_csv('combined_pubdate_pubtime.csv')
+df_esd = pd.read_csv(symbolDataFileHourly)
+
+# Ensure the DateTime format of the first column in esd_BTC-USD_2y_1h.csv is consistent with 'combined'
+df_esd['DateTime'] = df_esd.iloc[:, 0].str[:16]  # Extract first 16 characters from the first column
+
+# Initialize new columns 'Open', 'High', 'Low', 'Close' in df_combined
+df_combined['Open'] = None
+df_combined['High'] = None
+df_combined['Low'] = None
+df_combined['Close'] = None
+
+# Loop through the combined DataFrame and check if the 'combined' value matches 'DateTime' in df_esd
+for i, row in df_combined.iterrows():
+    # Find matching row in df_esd based on DateTime
+    match = df_esd[df_esd['DateTime'] == row['combined']]
+    
+    if not match.empty:
+        # If a match is found, extract the 'Open', 'High', 'Low', and 'Close' values
+        df_combined.at[i, 'Open'] = match['Open'].values[0]
+        df_combined.at[i, 'High'] = match['High'].values[0]
+        df_combined.at[i, 'Low'] = match['Low'].values[0]
+        df_combined.at[i, 'Close'] = match['Close'].values[0]
+
+# Save the updated DataFrame to a new CSV file
+df_combined.to_csv('combined_pubdate_pubtime_with_esd_data.csv', index=False)
+
+
+df_final = pd.read_csv('final1_updated_with_NextH.csv')
+df_combined_with_esd = pd.read_csv('combined_pubdate_pubtime_with_esd_data.csv')
+
+# Add 'Open', 'High', 'Low', and 'Close' columns from 'combined_pubdate_pubtime_with_esd_data.csv' to 'final1_updated_with_NextH.csv'
+df_final[f'CurrH[{symbol}][O]'] = df_combined_with_esd['Open']
+df_final[f'CurrH[{symbol}][H]'] = df_combined_with_esd['High']
+df_final[f'CurrH[{symbol}][L]'] = df_combined_with_esd['Low']
+df_final[f'CurrH[{symbol}][C]'] = df_combined_with_esd['Close']
+
+# Save the updated DataFrame to a new CSV file
+df_final.to_csv('final1_updated_with_CurrH.csv', index=False)
