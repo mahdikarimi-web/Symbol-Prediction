@@ -2,8 +2,8 @@ import os
 import pandas as pd
 
 # Define the directories
-input_folder = 'C:\\Users\\mahdi\\Desktop\\works\\Extract News Sentiment'  # Folder containing the input CSV files
-output_folder = 'C:\\Users\\mahdi\\Desktop\\works\\Build sentiment signal'  # Folder to save the output CSV files
+input_folder = '../Extract News Sentiment'  # Folder containing the input CSV files
+output_folder = '../Build sentiment signal'  # Folder to save the output CSV files
 
 # Ensure the output folder exists
 os.makedirs(output_folder, exist_ok=True)

@@ -6,8 +6,8 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 analyzer = SentimentIntensityAnalyzer()
 
 # Define paths
-merge_data_folder = "C:\\Users\\mahdi\\Desktop\\works\\Merge news data"
-sentiment_data_folder = "C:\\Users\\mahdi\\Desktop\\works\\Extract News Sentiment"
+merge_data_folder = "../Merge news data"
+sentiment_data_folder = "../Extract News Sentiment"
 
 # Create the sentiment data folder if it doesn't exist
 if not os.path.exists(sentiment_data_folder):

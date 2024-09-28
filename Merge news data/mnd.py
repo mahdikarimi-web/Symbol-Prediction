@@ -2,8 +2,8 @@ import os
 import pandas as pd
 
 # Set the directories
-source_dir = 'C:\\Users\\mahdi\\Desktop\\works\\extract news data'
-target_dir = 'C:\\Users\\mahdi\\Desktop\\works\\Merge news data'
+source_dir = '../extract news data'
+target_dir = '../Merge news data'
 
 # Ensure the target directory exists
 os.makedirs(target_dir, exist_ok=True)
@@ -32,9 +32,13 @@ for file in os.listdir(source_dir):
         else:
             dataframes_by_topic[topic] = df
 
-# Merge the dataframes for each topic, remove duplicates, and save the new CSV files
+# Merge the dataframes for each topic, remove duplicates, sort by 'Date' and 'Time', and save the new CSV files
 for topic, df in dataframes_by_topic.items():
     df.drop_duplicates(inplace=True)  # Remove duplicate rows
+    
+    # Sort by 'Date' and 'Time' columns in ascending order
+    df.sort_values(by=['Date', 'Time'], ascending=True, inplace=True)
+    
     output_file = os.path.join(target_dir, f'{topic}.csv')  # New merged file
     df.to_csv(output_file, index=False)
-    print(f"Merged CSV for topic '{topic}' saved to {output_file}")
+    print(f"Merged and sorted CSV for topic '{topic}' saved to {output_file}")

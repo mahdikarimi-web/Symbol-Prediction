@@ -1,6 +1,7 @@
 from datetime import timedelta
 import pandas as pd
-
+import os
+import glob
 symbolDataFileDaily = 'esd_BTC-USD_2y_1d.csv'
 symbolDataFileHourly = 'esd_BTC-USD_2y_1h.csv'
 # Read the CSV file
@@ -72,7 +73,6 @@ df[df.columns[0]] = pd.to_datetime(df[df.columns[0]]).dt.strftime('%Y-%m-%d')
 # Save the updated DataFrame back to a CSV file
 df.to_csv(f'new_{symbolDataFileDaily}', index=False)
 
-print("Time part removed from the first column.")
 
 
 #===============================================================================
@@ -165,7 +165,6 @@ df_combined = df[['combined']]
 # Save the DataFrame to a new CSV file
 df_combined.to_csv('combined.csv', index=False)
 
-print("New CSV file 'combined.csv' created successfully.")
 
 
 
@@ -312,4 +311,18 @@ df_final[f'CurrH[{symbol}][L]'] = df_combined_with_esd['Low']
 df_final[f'CurrH[{symbol}][C]'] = df_combined_with_esd['Close']
 
 # Save the updated DataFrame to a new CSV file
-df_final.to_csv('final1_updated_with_CurrH.csv', index=False)
+df_final.to_csv('ecsymdf.csv', index=False)
+
+
+keep_files = [symbolDataFileDaily, symbolDataFileHourly,'ecsymdf.csv','ecdf.csv']
+
+# Get all CSV files in the current directory
+csv_files = glob.glob('*.csv')
+
+# Delete all CSV files except the ones to keep
+for file in csv_files:
+    if file not in keep_files:
+        os.remove(file)
+        print(f"Deleted: {file}")
+
+print("File cleanup complete.")
