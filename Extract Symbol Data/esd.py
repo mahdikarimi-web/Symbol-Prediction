@@ -22,11 +22,14 @@ def extract_symbol_data(symbol, period, interval):
 
 # Function to adjust datetime values with '+01:00' timezone
 def adjust_datetime(file_name):
-    # Load the CSV file into a DataFrame
-    data = pd.read_csv(file_name)
+    # Load the CSV file into a DataFrame, skipping any extraneous rows
+    data = pd.read_csv(file_name, skiprows=0)  # Adjust if there are extra headers
     
-    # Ensure the 'Datetime' column (first column) is treated as a datetime object
-    data.iloc[:, 0] = pd.to_datetime(data.iloc[:, 0])
+    # Verify and ensure the first column is 'Datetime' and convert it to datetime format
+    data.iloc[:, 0] = pd.to_datetime(data.iloc[:, 0], errors='coerce')
+    
+    # Drop rows with NaT in the datetime column, which indicates parsing issues
+    data = data.dropna(subset=[data.columns[0]])
     
     # Iterate over the rows and adjust datetime
     for index, row in data.iterrows():
@@ -39,7 +42,6 @@ def adjust_datetime(file_name):
     
     # Save the adjusted DataFrame back to the CSV
     adjusted_file_name = file_name
-    data = data.iloc[:, :-1]
     data.to_csv(adjusted_file_name, index=False)
     
     # Download the adjusted CSV
