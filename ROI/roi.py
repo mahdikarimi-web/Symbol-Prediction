@@ -75,5 +75,15 @@ for idx in range(1, len(new_df)):
         new_df.loc[idx, 'next-sym-balance'] = curr_sym_balance
 
 # Save the DataFrame to a CSV file
+
+# Calculate 'sym' column
+new_df['sym'] = new_df.apply(
+    lambda row: row['next-sym-balance'] if row['next-sym-balance'] != 0 else row['next-usd-balance'] / row['price'], axis=1
+)
+
+# Calculate 'usd' column
+new_df['usd'] = new_df.apply(
+    lambda row: row['next-usd-balance'] if row['next-usd-balance'] != 0 else row['next-sym-balance'] * row['price'], axis=1
+)
 new_df.to_csv(output_file, index=False)
 print(f"Output saved to {output_file}")
