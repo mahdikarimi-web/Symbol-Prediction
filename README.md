@@ -1,4 +1,7 @@
 hi
+we are back
+
+
 Here is a series of tasks for experimental prediction of symbols used in trading.
 
 1. Folder name: Extract Symbol Data
